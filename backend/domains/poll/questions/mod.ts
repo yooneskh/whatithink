@@ -28,11 +28,13 @@ const QuestionSchema: IUnifiedModel<IQuestionBase> = {
   slug: {
     type: 'string',
     required: true,
+    hideInTable: true,
   },
   entries: {
     type: 'series',
     required: true,
     seriesColumns: 3,
+    hideInTable: true,
     seriesSchema: {
       name: {
         type: 'string',
