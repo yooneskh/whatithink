@@ -2,11 +2,16 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "jsr:@unified/deno-config@1.0.2": "jsr:@unified/deno-config@1.0.2",
       "jsr:@unified/kv@0.4.2": "jsr:@unified/kv@0.4.2",
       "jsr:@unified/mongo-filter@0.4.0": "jsr:@unified/mongo-filter@0.4.0",
-      "npm:nanoid@5.0.7": "npm:nanoid@5.0.7"
+      "npm:nanoid@5.0.7": "npm:nanoid@5.0.7",
+      "npm:radash@12.1.0": "npm:radash@12.1.0"
     },
     "jsr": {
+      "@unified/deno-config@1.0.2": {
+        "integrity": "6cdec72664372f65e922360926dd90cc095f0c29d182b4dd6c7976eff991c9f9"
+      },
       "@unified/kv@0.4.2": {
         "integrity": "5c7fef9d0708f6cdea66b711f2b31e8975ccd6d697a1497eae56531a7945fb70",
         "dependencies": [
@@ -22,13 +27,19 @@
       "nanoid@5.0.7": {
         "integrity": "sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==",
         "dependencies": {}
+      },
+      "radash@12.1.0": {
+        "integrity": "sha512-b0Zcf09AhqKS83btmUeYBS8tFK7XL2e3RvLmZcm0sTdF1/UUlHSsjXdCcWNxe7yfmAlPve5ym0DmKGtTzP6kVQ==",
+        "dependencies": {}
       }
     }
   },
   "remote": {},
   "workspace": {
     "dependencies": [
-      "jsr:@unified/kv@0.4.2"
+      "jsr:@unified/deno-config@1.0.2",
+      "jsr:@unified/kv@0.4.2",
+      "npm:radash@12.1.0"
     ]
   }
 }

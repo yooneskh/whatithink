@@ -1,6 +1,7 @@
+import { augmentConfiguration } from 'unified-deno-config';
 
 
-export const Config = {
+export const Config = augmentConfiguration({
   http: {
     port: 8081,
   },
@@ -39,4 +40,4 @@ export const Config = {
   kavenegar: {
     apiKey: '',
   },
-};
+});
