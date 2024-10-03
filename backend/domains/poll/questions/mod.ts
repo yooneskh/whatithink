@@ -32,14 +32,17 @@ const QuestionSchema: IUnifiedModel<IQuestionBase> = {
   entries: {
     type: 'series',
     required: true,
+    seriesColumns: 3,
     seriesSchema: {
       name: {
         type: 'string',
         required: true,
+        width: 6,
       },
       image: {
         type: 'string',
         ref: 'Media',
+        width: 6,
       },
     },
   },
