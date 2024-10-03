@@ -21,6 +21,19 @@ export function install(app: IUnifiedApp) {
               },
             ],
           },
+          {
+            label: 'Poll',
+            children: [
+              {
+                label: 'Questions',
+                to: { name: 'admin.resources', params: { resourceIdentifier: 'questions' } },
+              },
+              {
+                label: 'Answers',
+                to: { name: 'admin.resources', params: { resourceIdentifier: 'answers' } },
+              },
+            ],
+          },
         ];
       },
     },

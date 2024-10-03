@@ -1,0 +1,116 @@
+import type { IUnifiedApp } from 'unified-app';
+import type { IUnifiedModel, IUnifiedController } from 'unified-resources';
+import type { IBaseDocument } from 'unified-kv';
+import { createUnifiedController } from 'unified-resources';
+
+
+interface IQuestionBase {
+  user: string;
+  name: string;
+  slug: string;
+  entries: {
+    name: string;
+    image?: string;
+  }[];
+} export interface IQuestion extends IQuestionBase, IBaseDocument {}
+
+const QuestionSchema: IUnifiedModel<IQuestionBase> = {
+  user: {
+    type: 'string',
+    ref: 'User',
+    required: true,
+  },
+  name: {
+    type: 'string',
+    required: true,
+    titleable: true,
+  },
+  slug: {
+    type: 'string',
+    required: true,
+  },
+  entries: {
+    type: 'series',
+    required: true,
+    seriesSchema: {
+      name: {
+        type: 'string',
+        required: true,
+      },
+      image: {
+        type: 'string',
+        ref: 'Media',
+      },
+    },
+  },
+};
+
+
+declare module 'unified-app' {
+  interface IUnifiedApp {
+    questions: IUnifiedController<IQuestionBase>;
+  }
+}
+
+
+export function install(app: IUnifiedApp) {
+
+  app.addModel('Question', QuestionSchema);
+
+  app.questions = createUnifiedController<IQuestionBase>(app, 'Question', QuestionSchema);
+
+
+  app.addActions({
+    'meta': {
+      method: 'get',
+      path: '/questions/meta',
+      requirePermission: 'admin.poll.questions.meta',
+      handler: () => {
+        return app.models['Question'];
+      },
+    },
+    'list': {
+      template: 'list',
+      controller: app.questions,
+      pathPrefix: '/questions',
+      requirePermission: 'admin.poll.questions.list',
+    },
+    'count': {
+      template: 'count',
+      controller: app.questions,
+      pathPrefix: '/questions',
+      requirePermission: 'admin.poll.questions.count',
+    },
+    'retrieve': {
+      template: 'retrieve',
+      controller: app.questions,
+      pathPrefix: '/questions',
+      requirePermission: 'admin.poll.questions.retrieve',
+    },
+    'create': {
+      template: 'create',
+      controller: app.questions,
+      pathPrefix: '/questions',
+      requirePermission: 'admin.poll.questions.create',
+    },
+    'update': {
+      template: 'update',
+      controller: app.questions,
+      pathPrefix: '/questions',
+      requirePermission: 'admin.poll.questions.update',
+    },
+    'replace': {
+      template: 'replace',
+      controller: app.questions,
+      pathPrefix: '/questions',
+      requirePermission: 'admin.poll.questions.replace',
+    },
+    'delete': {
+      template: 'delete',
+      controller: app.questions,
+      pathPrefix: '/questions',
+      requirePermission: 'admin.poll.questions.delete',
+    },
+  });
+
+}

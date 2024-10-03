@@ -5,6 +5,7 @@ import { install as installAuthentication } from './domains/authentication/mod.t
 import { install as installAuthorization } from './domains/authorization/mod.ts';
 import { install as installMedia } from './domains/media/mod.ts';
 import { install as installApplicationSettings } from './domains/settings/application-settings.ts';
+import { install as installPoll } from './domains/poll/mod.ts';
 
 
 export function createApp(): IUnifiedApp {
@@ -26,6 +27,8 @@ export function createApp(): IUnifiedApp {
   /* app specific */
 
   installApplicationSettings(app);
+
+  installPoll(app);
 
 
   app.pathPop();
