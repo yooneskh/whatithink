@@ -1,2 +1,2 @@
-ssh $zxc pm2 start --name project-backend --cwd /home/yooneskh/project/backend/ deno -- task start
-ssh $zxc pm2 start --name project-frontend --cwd /home/yooneskh/project/frontend/ deno -- task start
+ssh $zxc pm2 start --name rasa-backend --cwd /home/yooneskh/rasa/backend/ deno -- task start
+ssh $zxc pm2 start --name rasa-frontend --cwd /home/yooneskh/rasa/frontend/ deno -- task start

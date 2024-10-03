@@ -1,4 +1,4 @@
-# Unified Backend
+# Rasa Backend
 
 This is a started template for a SaaS application backend implemented using Deno. It provides common functionality needed in every application and a common ground to quickly add features on top of them.
 

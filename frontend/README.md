@@ -1,4 +1,4 @@
-# Unified Frontend
+# Rasa Frontend
 
 This repository is a Started template for a SaaS application frontend. It is based on Nuxt 3 and Vue 3. This code havily uses the "Layers" feature of the Nuxt 3 to implement a Domain Driven Design approach.
 

@@ -1,13 +1,13 @@
 
 
 export default {
-  id: 'uapp',
+  id: 'rasa',
   brand: {
-    title: 'Unified Application',
+    title: 'Rasa',
   },
   http: {
-    baseUrl: 'https://uapp.khoshghadam.com',
-    apiUrl: 'https://uapp.khoshghadam.com/api',
+    baseUrl: 'https://rasa.khoshghadam.com',
+    apiUrl: 'https://rasa.khoshghadam.com/api',
   },
   locale: {
     default: 'en',
