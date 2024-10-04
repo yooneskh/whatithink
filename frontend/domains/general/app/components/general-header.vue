@@ -25,7 +25,7 @@ async function logoutUser() {
 
       <div class="grow" />
 
-      <template v-if="user">
+      <!-- <template v-if="user">
         <u-btn
           icon="i-mdi-account-outline"
           class="ghost">
@@ -59,7 +59,7 @@ async function logoutUser() {
             class="soft text-sm"
           />
         </nuxt-link>
-      </template>
+      </template> -->
 
     </content-container>
 

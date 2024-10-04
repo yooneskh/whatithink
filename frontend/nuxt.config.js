@@ -3,6 +3,7 @@
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
   extends: [
+    './domains/poll',
     './domains/general',
     './domains/authentication',
     './domains/admin',
