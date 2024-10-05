@@ -78,19 +78,19 @@ export function install(app: IUnifiedApp) {
       template: 'list',
       controller: app.questions,
       pathPrefix: '/questions',
-      requirePermission: 'admin.poll.questions.list',
+      // requirePermission: 'admin.poll.questions.list',
     },
     'count': {
       template: 'count',
       controller: app.questions,
       pathPrefix: '/questions',
-      requirePermission: 'admin.poll.questions.count',
+      // requirePermission: 'admin.poll.questions.count',
     },
     'retrieve': {
       template: 'retrieve',
       controller: app.questions,
       pathPrefix: '/questions',
-      requirePermission: 'admin.poll.questions.retrieve',
+      // requirePermission: 'admin.poll.questions.retrieve',
     },
     'create': {
       template: 'create',
