@@ -39,10 +39,11 @@ const isFinished = computed(() =>
 
 /* share */
 
-function shareOnTwitter() {
+async function shareOnTwitter() {
 
-  const answersText = answers.value.map((answer, index) => index === answers.value.length - 1 ? `👑 ${answer} 👑` : `${answer},`).join('\n');
-  const text = `${question.value.name}\nthis is me:\n${answersText}`;
+  const answersText = answers.value.map((answer, index) => index === answers.value.length - 1 ? `👑 ${answer} 👑` : `${answer}`).join(' -> ');
+  const link = `https://rasa.khoshghadam.com/${question.value.slug}/${question.value._id}/${123}`;
+  const text = `${question.value.name}\n\nthis is me:${answersText}\n\nDo you think like me? ${link}`;
 
   window.open(
     `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
@@ -107,7 +108,7 @@ function shareOnTwitter() {
             class="primary"
             icon="i-mdi-twitter"
             label="Share on Twitter"
-            @click="shareOnTwitter"
+            :click-handler="shareOnTwitter"
           />
         </div>
 

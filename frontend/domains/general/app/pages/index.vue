@@ -10,6 +10,11 @@ useHead({
   title: '',
 });
 
+
+/* questions */
+
+const { data: allQuestions } = await useUFetch('/questions/');
+
 </script>
 
 
@@ -45,6 +50,16 @@ useHead({
           </div>
         </div>
       </div>
+
+      <h2 class="mt-12 text-2xl font-bold">
+        Current Questions
+      </h2>
+
+      <nuxt-link v-for="question of allQuestions" :key="question._id" :to="{ name: 'poll.question', params: { questionSlug: question.slug, questionId: question._id } }">
+        <u-card class="outline neutral interactive">
+          {{ question.name }}
+        </u-card>
+      </nuxt-link>
 
     </content-container>
   </main>
