@@ -5,8 +5,9 @@ import { createUnifiedController } from 'unified-resources';
 
 
 interface IAnswerBase {
-  user: string;
+  user?: string;
   question: string;
+  answer?: string;
   entries: string[];
 } export interface IAnswer extends IAnswerBase, IBaseDocument {}
 
@@ -14,17 +15,21 @@ const AnswerSchema: IUnifiedModel<IAnswerBase> = {
   user: {
     type: 'string',
     ref: 'User',
-    required: true,
   },
   question: {
     type: 'string',
     ref: 'Question',
     required: true,
   },
+  answer: {
+    type: 'string',
+    ref: 'Answer',
+  },
   entries: {
     type: 'string',
     array: true,
     required: true,
+    hideInTable: true
   },
 };
 
@@ -75,6 +80,11 @@ export function install(app: IUnifiedApp) {
       controller: app.answers,
       pathPrefix: '/answers',
       // requirePermission: 'admin.poll.answers.create',
+      rateLimit: {
+        points: 5,
+        windowDuration: 60_000 * 60,
+        blockDuration: 60_000 * 60,
+      },
     },
     'update': {
       template: 'update',

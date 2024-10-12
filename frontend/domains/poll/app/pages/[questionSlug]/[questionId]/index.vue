@@ -1,6 +1,7 @@
 <script setup>
 
 const route = useRoute();
+const user = useUser();
 
 
 /* page */
@@ -31,25 +32,63 @@ useHead({
 /* answers */
 
 const answers = ref([]);
+const submittingAnswer = ref(false);
+const answerId = ref('');
 
 const isFinished = computed(() =>
   answers.value.length === question.value.entries.length - 1
 );
 
+watch(isFinished, () => {
+  if (isFinished.value) {
+    submitAsnwer();
+  }
+});
+
+
+async function submitAsnwer() {
+
+  const answer = await ufetch(`/answers/`, {
+    loading: submittingAnswer,
+    method: 'post',
+    body: {
+      user: user.value?._id,
+      question: questionId.value,
+      entries: answers.value,
+    },
+  });
+
+  answerId.value = answer._id;
+
+}
+
 
 /* share */
 
+const shareText = computed(() => {
+  
+  const answersText = answers.value.map((answer, index) => index === answers.value.length - 1 ? `👑 ${answer} 👑` : `${answer}`).join(' - ');
+  const link = `https://rasa.khoshghadam.com/${question.value.slug}/${question.value._id}/${answerId.value}`;
+
+  return `${question.value.name}\n\nfor me: ${answersText}\n\nWhat do you think? ${link}`;
+
+});
+
+async function copyToClipboard() {
+
+  await navigator.clipboard.writeText(shareText.value);
+
+  toastSuccess({
+    title: 'Copied to clipboard',
+  });
+
+}
+
 async function shareOnTwitter() {
-
-  const answersText = answers.value.map((answer, index) => index === answers.value.length - 1 ? `👑 ${answer} 👑` : `${answer}`).join(' -> ');
-  const link = `https://rasa.khoshghadam.com/${question.value.slug}/${question.value._id}/${123}`;
-  const text = `${question.value.name}\n\nthis is me:${answersText}\n\nDo you think like me? ${link}`;
-
   window.open(
-    `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
+    `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText.value)}`,
     '_blank'
   );
-
 }
 
 </script>
@@ -100,15 +139,20 @@ async function shareOnTwitter() {
         </div>
 
         <p class="mt-8 text-lg">
-          Share this with your friends to know how much others think like you!
+          Share this with your friends to know how much they think like you!
         </p>
 
-        <div class="mt-4">
+        <div class="mt-4 space-x-2">
           <u-btn
             class="primary"
             icon="i-mdi-twitter"
             label="Share on Twitter"
             :click-handler="shareOnTwitter"
+          />
+          <u-btn
+            icon="i-mdi-clipboard-text"
+            label="Copy share text"
+            :click-handler="copyToClipboard"
           />
         </div>
 
