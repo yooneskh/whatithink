@@ -52,7 +52,7 @@ async function showResource() {
 
 <template>
   <template v-if="props.resource === 'Media'">
-    <a target="_blank" :href="item?.path" class="text-primary underline flex items-center gap-2">
+    <a target="_blank" :href="item?.path" class="whitespace-nowrap text-sm text-primary underline flex items-center gap-2">
       <img
         v-if="item?.type?.startsWith('image')"
         :src="item?.variants?.small ?? item?.path"
@@ -71,7 +71,7 @@ async function showResource() {
   </template>
   <template v-else>
     <span
-      class="text-primary underline cursor-pointer me-2"
+      class="whitespace-nowrap text-sm text-primary underline cursor-pointer me-2"
       @click="showResource()">
       {{ title }}
     </span>
