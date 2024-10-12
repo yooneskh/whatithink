@@ -133,7 +133,7 @@ import ExplorerTableFilterItem from '../atoms/explorer-table-filter-item.vue';
 
       <template #header-name="{ header, label }">
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1">
 
           {{ label }}
 
@@ -143,13 +143,25 @@ import ExplorerTableFilterItem from '../atoms/explorer-table-filter-item.vue';
             @click="sorts = { [header.key]: sorts[header.key] === undefined ? -1 : (sorts[header.key] === -1 ? 1 : undefined) }"
           />
 
+          <u-btn
+            icon="i-mdi-filter"
+            class="ghost text-xs p-[2px] -mt-1"
+            :class="{
+              'primary': filters[header.key],
+            }">
+            <u-dropdown persist="content">
+              <u-card>
+                <explorer-table-filter-item
+                  class="font-normal"
+                  :header="header"
+                  v-model="filters[header.key]"
+                />
+              </u-card>
+            </u-dropdown>
+          </u-btn>
+
         </div>
 
-        <explorer-table-filter-item
-          class="font-normal"
-          :header="header"
-          v-model="filters[header.key]"
-        />
 
       </template>
 

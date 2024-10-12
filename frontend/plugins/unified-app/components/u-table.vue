@@ -54,7 +54,7 @@ async function handleActionClick(action, item, index) {
   
           <th v-for="header of props.headers" :key="header.key">
             <slot name="header" :header="header">
-              <div class="text-start px-3 py-2 whitespace-nowrap">
+              <div class="text-start p-2 whitespace-nowrap">
                 <slot name="header-name" :header="header" :label="startCase(header.key)">
                   <span :class="header.headerClasses">
                     {{ header.label || startCase(header.key) }}
@@ -64,7 +64,7 @@ async function handleActionClick(action, item, index) {
             </slot>
           </th>
   
-          <th v-if="props.actions?.length > 0" class="text-center px-3 py-2">
+          <th v-if="props.actions?.length > 0" class="text-center p-2">
             {{ props.actionsTitle }}
           </th>
   
@@ -86,7 +86,7 @@ async function handleActionClick(action, item, index) {
   
           <td
             v-for="header of props.headers" :key="header.key"
-            class="text-start px-3 py-4">
+            class="text-start p-2">
   
             <slot name="item" :header="header" :item="row" :data="row[header.key]">
               <span :class="header.bodyClasses">

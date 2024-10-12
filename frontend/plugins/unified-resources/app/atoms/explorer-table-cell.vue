@@ -44,7 +44,7 @@ import ExplorerTableCellResource from './explorer-table-cell-resource.vue';
 
   <template v-if="props.header.variants">
     <template v-for="(headerExtra, variant) of props.header.variants" :key="variant">
-      <span class="underline m-1">
+      <span class="whitespace-nowrap text-sm underline m-1">
         {{ variant }}:
         <explorer-table-cell
           v-if="props.data[variant]"
@@ -56,7 +56,7 @@ import ExplorerTableCellResource from './explorer-table-cell-resource.vue';
   </template>
 
   <template v-if="props.header.type === 'series'">
-    <span class="underline text-primary cursor-pointer" @click="viewSeriesData()">
+    <span class="whitespace-nowrap text-sm underline text-primary cursor-pointer" @click="viewSeriesData()">
       View Data
     </span>
   </template>
@@ -81,30 +81,36 @@ import ExplorerTableCellResource from './explorer-table-cell-resource.vue';
   </template>
 
   <template v-else-if="props.header.labelFormat">
-    {{ !data ? '' : formatDate(data, props.header.labelFormat) }}
+    <span class="whitespace-nowrap text-sm">
+      {{ !data ? '' : formatDate(data, props.header.labelFormat) }}
+    </span>
   </template>
 
   <template v-else-if="props.header.type === 'boolean'">
     <template v-if="data">
-      <u-icon name="i-mdi-check" class="text-success" />
+      <u-icon name="i-mdi-check" class="text-sm text-success" />
     </template>
     <template v-else>
-      <u-icon name="i-mdi-close" class="text-danger" />
+      <u-icon name="i-mdi-close" class="text-sm text-danger" />
     </template>
   </template>
 
   <template v-else-if="props.header.type === 'number'">
-    <div class="text-right">
+    <span class="whitespace-nowrap text-sm text-right">
       {{ props.data?.toLocaleString?.() ?? props.data }}
-    </div>
+    </span>
   </template>
 
   <template v-else-if="props.header.items">
-    {{ props.header.items.find?.(it => it.value === props.data)?.title ?? props.data }}
+    <span class="whitespace-nowrap text-sm text-right">
+      {{ props.header.items.find?.(it => it.value === props.data)?.title ?? props.data }}
+    </span>
   </template>
 
   <template v-else>
-    {{ props.data }}
+    <span class="whitespace-nowrap text-sm">
+      {{ props.data }}
+    </span>
   </template>
 
 </template>

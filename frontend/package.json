@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "@formkit/tempo": "0.1.2",
-    "@nuxt/fonts": "0.9.2",
+    "@nuxt/fonts": "0.10.0",
     "nuxt": "3.13.2",
     "nuxt-typed-router": "3.7.0",
     "pluralize": "8.0.0",
     "unified-components": "0.6.16",
     "unified-mongo-filter": "0.3.1",
-    "vue": "3.5.10",
+    "vue": "3.5.12",
     "vue3-persian-datetime-picker": "1.2.2"
   }
 }

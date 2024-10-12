@@ -27,7 +27,7 @@ import ElementResource from '../../../unified-form-elements/elements/element-res
     <template v-if="['createdAt', 'updatedAt'].includes(props.header.key)" />
 
     <template v-else-if="props.header.ref === 'Media'">
-      <element-media :field="{}" v-model="modelValue">
+      <element-media :field="{ label: 'Filter' }" v-model="modelValue">
         <template #append-inner>
           <u-btn
             v-if="modelValue"
@@ -40,7 +40,7 @@ import ElementResource from '../../../unified-form-elements/elements/element-res
     </template>
 
     <template v-else-if="props.header.ref">
-      <element-resource :field="{ resource: props.header.ref }" v-model="modelValue">
+      <element-resource :field="{ label: 'Filter', resource: props.header.ref }" v-model="modelValue">
         <template #append-inner>
           <u-btn
             v-if="modelValue"
@@ -53,7 +53,7 @@ import ElementResource from '../../../unified-form-elements/elements/element-res
     </template>
 
     <template v-else-if="props.header.items || props.header.enum">
-      <u-select :items="props.header.items || props.header.enum" v-model="modelValue">
+      <u-select label="Filter" :items="props.header.items || props.header.enum" v-model="modelValue">
         <template #append-inner>
           <u-btn
             v-if="modelValue"
@@ -66,7 +66,7 @@ import ElementResource from '../../../unified-form-elements/elements/element-res
     </template>
   
     <template v-else>
-      <u-input :type="props.header.type === 'number' ? 'number' : 'text'" v-model="modelValue">
+      <u-input label="Filter" :type="props.header.type === 'number' ? 'number' : 'text'" v-model="modelValue">
         <template #append-inner>
           <u-btn
             v-if="modelValue"
