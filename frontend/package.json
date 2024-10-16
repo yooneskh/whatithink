@@ -12,6 +12,7 @@
   "dependencies": {
     "@formkit/tempo": "0.1.2",
     "@nuxt/fonts": "0.10.0",
+    "canvas-confetti": "1.9.3",
     "nuxt": "3.13.2",
     "nuxt-typed-router": "3.7.0",
     "pluralize": "8.0.0",

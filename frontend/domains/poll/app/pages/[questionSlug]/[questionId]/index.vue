@@ -18,7 +18,12 @@ const questionId = computed(() =>
 );
 
 const { data: question } = await useUFetch(
-  computed(() => `/questions/${questionId.value}`)
+  computed(() => `/questions/${questionId.value}`),
+  {
+    query: {
+      'populate': 'entries.image',
+    },
+  }
 );
 
 
@@ -41,6 +46,7 @@ const isFinished = computed(() =>
 
 watch(isFinished, () => {
   if (isFinished.value) {
+    confettiPageSides(2000);
     submitAsnwer();
   }
 });

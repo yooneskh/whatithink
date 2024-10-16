@@ -18,7 +18,12 @@ const questionId = computed(() =>
 );
 
 const { data: question } = await useUFetch(
-  computed(() => `/questions/${questionId.value}`)
+  computed(() => `/questions/${questionId.value}`),
+  {
+    query: {
+      'populate': 'entries.image',
+    },
+  }
 );
 
 
@@ -58,6 +63,7 @@ const matchPercentage = computed(() => {
 
 watch(isFinished, () => {
   if (isFinished.value) {
+    confettiPageSides(2000);
     submitAsnwer();
   }
 });
@@ -170,27 +176,45 @@ async function shareOnTwitterMatch() {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(answer, index) in answers" :key="index">
-              <td>{{ answer }}</td>
-              <td class="px-2">
-                <u-icon
-                  v-if="answer === previousAnswer?.entries[index]"
-                  name="i-mdi-equal"
-                  class="text-success"
-                />
-                <u-icon
-                  v-else
-                  name="i-mdi-not-equal"
-                  class="text-danger"
-                />
-              </td>
-              <td>{{ previousAnswer?.entries[index] }}</td>
-            </tr>
+            <template v-for="(answer, index) in answers" :key="index">
+              <tr>
+                <td>
+                  <template v-if="index === answers.length - 1">
+                    👑
+                  </template>
+                  {{ answer }}
+                  <template v-if="index === answers.length - 1">
+                    👑
+                  </template>
+                </td>
+                <td class="px-2">
+                  <u-icon
+                    v-if="answer === previousAnswer?.entries[index]"
+                    name="i-mdi-equal"
+                    class="text-success"
+                  />
+                  <u-icon
+                    v-else
+                    name="i-mdi-not-equal"
+                    class="text-danger"
+                  />
+                </td>
+                <td>
+                  <template v-if="index === answers.length - 1">
+                    👑
+                  </template>
+                  {{ previousAnswer?.entries[index] }}
+                  <template v-if="index === answers.length - 1">
+                    👑
+                  </template>
+                </td>
+              </tr>
+            </template>
           </tbody>
         </table>
 
         <p class="mt-8 text-2xl font-bold">
-          👑 You are {{ matchPercentage }}% match! <span v-if="matchPercentage === 69">Nice!</span> 👑
+          You are {{ matchPercentage }}% match! <span v-if="matchPercentage === 69">Nice!</span>
         </p>
 
         <p class="mt-8 text-lg">
@@ -221,13 +245,12 @@ async function shareOnTwitterMatch() {
           <u-btn
             icon="i-mdi-twitter"
             label="Share on Twitter"
-            class="primary text-xs"
+            class="primary"
             :click-handler="shareOnTwitter"
           />
           <u-btn
             icon="i-mdi-clipboard-text"
             label="Copy share text"
-            class="text-xs"
             :click-handler="copyToClipboard"
           />
         </div>

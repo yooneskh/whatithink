@@ -45,16 +45,32 @@ function selectEntry(entry) {
 
 
 <template>
-  <div>
-    <div class="grid grid-cols-2 gap-4">
-      <u-card class="outline neutral text-center interactive" @click="selectEntry(currentEntry)">
-        <p class="text-lg md:text-2xl">
+  <div class="max-w-md mx-auto">
+    <div class="grid grid-cols-2 items-start gap-4">
+      <u-card :key="currentEntry?.name" class="soft neutral text-center interactive" @click="selectEntry(currentEntry)">
+        <p class="text-lg md:text-lg">
+
+          <img
+            v-if="currentEntry?.image"
+            :src="currentEntry.image.path"
+            class="mb-2"
+          />
+
           {{ currentEntry?.name }}
+
         </p>
       </u-card>
-      <u-card class="outline neutral text-center interactive" @click="selectEntry(nextEntry)">
-        <p class="text-lg md:text-2xl">
+      <u-card :key="nextEntry?.name" class="soft neutral text-center interactive" @click="selectEntry(nextEntry)">
+        <p class="text-lg md:text-lg">
+
+          <img
+            v-if="nextEntry?.image"
+            :src="nextEntry.image.path"
+            class="mb-2"
+          />
+
           {{ nextEntry?.name }}
+
         </p>
       </u-card>
     </div>

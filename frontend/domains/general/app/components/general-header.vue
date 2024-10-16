@@ -25,41 +25,12 @@ async function logoutUser() {
 
       <div class="grow" />
 
-      <!-- <template v-if="user">
+      <nuxt-link to="https://khoshghadam.com" target="_blank">
         <u-btn
-          icon="i-mdi-account-outline"
-          class="ghost">
-          <u-dropdown>
-            <u-card class="p-1 flex flex-col gap-1 w-xs">
-              <p class="text-sm text-center mb-1">
-                {{ user.email }}
-              </p>
-              <hr />
-              <nuxt-link v-if="user?.permissions?.some(it => it.startsWith('admin'))" :to="{ name: 'admin.dashboard' }">
-                <u-btn
-                  icon="i-mdi-view-dashboard"
-                  label="Admin dashboard"
-                  class="ghost text-sm w-full"
-                />
-              </nuxt-link>
-              <u-btn
-                icon="i-mdi-logout"
-                label="Logout"
-                class="soft danger text-sm"
-                :click-handler="logoutUser"
-              />
-            </u-card>
-          </u-dropdown>
-        </u-btn>
-      </template>
-      <template v-else>
-        <nuxt-link :to="{ name: 'authentication' }">
-          <u-btn
-            label="Login"
-            class="soft text-sm"
-          />
-        </nuxt-link>
-      </template> -->
+          label="About Me"
+          class="soft text-sm"
+        />
+      </nuxt-link>
 
     </content-container>
 
