@@ -10,7 +10,7 @@ useHead({
 });
 
 useSeoMeta({
-  'description': 'Applications description.',
+  'description': 'Ask questions and see how much your friends are similar to you.',
   'og:image': '/favicon.ico',
   'twitter:card': 'summary',
 });
