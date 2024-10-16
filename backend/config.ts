@@ -13,7 +13,7 @@ export const Config = augmentConfiguration({
     baseUrl: 'https://localhost:8080',
   },
   authentication: {
-    verificationTokenStaticCode: '1111',
+    verificationTokenStaticCode: '',
     verificationTokenLength: 4,
     verificationTokenLifetime: 1000 * 60 * 3,
     registrationTokenLifetime: 1000 * 60 * 3,
