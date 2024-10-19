@@ -22,6 +22,5 @@ export default defineNuxtConfig({
   ],
   modules: [
     'nuxt-typed-router',
-    '@nuxt/fonts',
   ],
 });
