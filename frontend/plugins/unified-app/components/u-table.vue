@@ -17,6 +17,7 @@ const props = defineProps({
     type: String,
     default: 'Actions',
   },
+  rowAction: Function,
   selectedItems: Array,
 });
 
@@ -82,16 +83,20 @@ async function handleActionClick(action, item, index) {
           class="transition hover:bg-black/10"
           :class="{
             'bg-primary/15': props.selectedItems?.includes(row[props.itemKey]),
-          }">
+            'cursor-pointer': !!props.rowAction,
+          }"
+          @click="props.rowAction?.(row)">
   
           <td
             v-for="header of props.headers" :key="header.key"
             class="text-start p-2">
   
             <slot name="item" :header="header" :item="row" :data="row[header.key]">
-              <span :class="header.bodyClasses">
-                {{ row[header.key] }}
-              </span>
+              <slot :name="`item-${header.key}`" :item="row" :data="row[header.key]">
+                <span :class="header.bodyClasses">
+                  {{ row[header.key] }}
+                </span>
+              </slot>
             </slot>
   
           </td>

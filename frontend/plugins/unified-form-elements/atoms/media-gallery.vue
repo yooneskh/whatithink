@@ -183,38 +183,48 @@ async function deleteFile(media) {
       You have not uploaded any media yet.
     </div>
 
-    <div class="grid grid-cols-5 gap-3 mt-3 max-h-[512px] overflow-y-auto -mx-3 px-3">
-      <u-card v-for="media of queriedMediaList" :key="media._id" class="p-1 interactive border-none shadow-none group relative" @click="emit('resolve', media._id);">
-
+    <u-table
+      :items="queriedMediaList"
+      :headers="[
+        { key: 'preview', label: 'Preview' },
+        { key: 'name', label: 'Name' },
+        { key: 'extension', label: 'File Type' },
+        { key: 'size', label: 'Size' },
+      ]"
+      :actions="[
+        {
+          icon: 'i-mdi-check',
+          label: 'Select',
+          classes: '!fill primary',
+          handler: (item) => emit('resolve', item._id),
+        },
+        {
+          icon: 'i-mdi-trash-can',
+          label: 'Delete',
+          classes: 'ghost danger',
+          handler: deleteFile,
+        },
+      ]"
+      :row-action="(item) => emit('resolve', item._id)">
+      
+      <template #item-preview="{ item }">
         <img
-          v-if="media.type?.startsWith('image')"
-          :src="media.path"
-          class="h-[128px] w-full object-contain bg-gray/10 p-2"
+          v-if="item.type?.startsWith('image')"
+          :src="item.path"
+          class="h-[32px]"
         />
-        <div v-else class="h-[128px] w-full bg-gray/10 flex items-center justify-center">
-          <u-icon
-            name="i-mdi-file"
-            class="text-6xl opacity-50"
-          />
-        </div>
+        <u-icon
+          v-else
+          name="i-mdi-file"
+          class="text-6xl opacity-50"
+        />
+      </template>
 
-        <p class="text-sm text-center mt-2 break-all">
-          {{ media.name }}.{{ media.extension }}
-        </p>
-        <p class="text-xs text-center mt-1">
-          {{ (media.size / 1024 / 1024).toFixed(2) }} MB
-        </p>
+      <template #item-size="{ item }">
+        {{ (item.size / 1024 / 1024).toFixed(2) }} MB
+      </template>
 
-        <div class="absolute top-[4px] right-[4px] opacity-0 group-hover:opacity-100 z-[1]">
-          <u-btn
-            class="soft danger text-xs"
-            icon="i-mdi-close"
-            @click.stop="deleteFile(media)"
-          />
-        </div>
-
-      </u-card>
-    </div>
+    </u-table>
 
   </u-card>
 </template>

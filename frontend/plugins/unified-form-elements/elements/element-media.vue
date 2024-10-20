@@ -99,7 +99,7 @@ watch(modelValue, async () => {
   
         <u-btn
           icon="i-mdi-open-in-new"
-          class="soft primary"
+          class="soft primary pointer-events-none"
         />
   
         <u-dropdown trigger="hover">

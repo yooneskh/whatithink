@@ -17,7 +17,7 @@ async function logoutUser() {
 <template>
   <header class="border-b-1">
 
-    <content-container class="flex items-center py-2">
+    <content-container class="flex items-center py-2 gap-1">
 
       <nuxt-link class="text-lg" :to="{ name: 'general.home' }">
         {{ config.brand.title }}
@@ -31,6 +31,55 @@ async function logoutUser() {
           class="soft text-sm"
         />
       </nuxt-link>
+
+      <template v-if="user">
+        <u-btn
+          icon="i-mdi-account-outline"
+          class="ghost">
+          <u-dropdown>
+            <u-card class="p-1 flex flex-col gap-1 w-xs">
+              <p class="text-sm text-center mb-1">
+                {{ user.email }}
+              </p>
+              <hr />
+              <nuxt-link v-if="user?.permissions?.some(it => it.startsWith('admin'))" :to="{ name: 'admin.dashboard' }">
+                <u-btn
+                  icon="i-mdi-view-dashboard"
+                  label="Admin dashboard"
+                  class="ghost text-sm w-full"
+                />
+              </nuxt-link>
+              <nuxt-link :to="{ name: 'general.panel' }">
+                <u-btn
+                  icon="i-mdi-format-list-bulleted"
+                  label="Panel"
+                  class="ghost text-sm w-full"
+                />
+              </nuxt-link>
+              <u-btn
+                icon="i-mdi-logout"
+                label="Logout"
+                class="soft danger text-sm"
+                :click-handler="logoutUser"
+              />
+            </u-card>
+          </u-dropdown>
+        </u-btn>
+      </template>
+      <template v-else>
+        <nuxt-link :to="{ name: 'authentication' }">
+          <u-btn
+            label="Login"
+            class="soft text-sm"
+          />
+        </nuxt-link>
+      </template>
+
+      <template v-else>
+        <nuxt-link to="/login">
+          Login
+        </nuxt-link>
+      </template>
 
     </content-container>
 
