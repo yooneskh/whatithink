@@ -77,7 +77,10 @@ async function logoutUser() {
 
       <template v-else>
         <nuxt-link to="/login">
-          Login
+          <u-btn
+            label="Login"
+            class="soft text-sm"
+          />
         </nuxt-link>
       </template>
 
