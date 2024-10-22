@@ -28,7 +28,7 @@ const { data: allQuestions } = await useUFetch('/questions/');
     <content-container class=":uno: flex flex-col items-center justify-center gap-3 py-8 md:py-50">
 
       <div class="w-full max-w-4xl text-center">
-        <h1 class="text-4xl font-bold mb-2">Welcome to Rasa</h1>
+        <h1 class="text-4xl font-bold mb-2">Welcome to What I Think</h1>
         <p class="text-xl mb-8">Find out what your friends think!</p>
         <div class="flex justify-center space-x-4">
           <nuxt-link :to="{ name: 'authentication' }">

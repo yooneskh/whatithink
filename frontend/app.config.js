@@ -3,11 +3,11 @@
 export default {
   id: 'rasa',
   brand: {
-    title: 'Rasa',
+    title: 'What I Think',
   },
   http: {
-    baseUrl: 'https://rasa.khoshghadam.com',
-    apiUrl: 'https://rasa.khoshghadam.com/api',
+    baseUrl: 'https://whatithink.khoshghadam.com',
+    apiUrl: 'https://whatithink.khoshghadam.com/api',
   },
   locale: {
     default: 'en',

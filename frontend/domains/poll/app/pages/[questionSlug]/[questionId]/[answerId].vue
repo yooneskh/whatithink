@@ -92,7 +92,7 @@ async function submitAsnwer() {
 const shareText = computed(() => {
   
   const answersText = answers.value.map((answer, index) => index === answers.value.length - 1 ? `👑 ${answer} 👑` : `${answer}`).join(' - ');
-  const link = `https://rasa.khoshghadam.com/${question.value.slug}/${question.value._id}/${answerId.value}`;
+  const link = `https://whatithink.khoshghadam.com/${question.value.slug}/${question.value._id}/${answerId.value}`;
 
   return `${question.value.name}\n\nfor me: ${answersText}\n\nWhat do you think? ${link}`;
 
@@ -119,7 +119,7 @@ async function shareOnTwitter() {
 const shareTextMatch = computed(() => {
   
   const answersText = answers.value.map((answer, index) => `${answer} ${answer === previousAnswer.value?.entries?.[index] ? '✅' : '❌'} ${previousAnswer.value?.entries?.[index]}`).join('\n');
-  const link = `https://rasa.khoshghadam.com/${question.value.slug}/${question.value._id}/${answerId.value}`;
+  const link = `https://whatithink.khoshghadam.com/${question.value.slug}/${question.value._id}/${answerId.value}`;
 
   return `We were ${matchPercentage.value}% match!\n\n${answersText}\n\nWhat do you think? ${link}`;
 
