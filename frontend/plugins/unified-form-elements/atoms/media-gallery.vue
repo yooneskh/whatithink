@@ -153,7 +153,7 @@ async function deleteAllCurrentMediaList() {
         label: 'Delete All Current Media List',
         classes: 'danger',
         handler: async () => {
-          for (const item of mediaList.value) {
+          for (const item of queriedMediaList.value) {
 
             await ufetch(`/media/${item._id}`, {
               method: 'delete',
