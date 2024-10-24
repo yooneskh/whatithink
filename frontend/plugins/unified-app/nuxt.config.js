@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '../unified-forms',
     '../unified-network',
     'unified-components',
+    'nuxt-unified-confetti',
   ],
   modules: [
     'nuxt-typed-router',

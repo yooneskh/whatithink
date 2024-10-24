@@ -110,7 +110,7 @@ async function handleActionClick(action, item, index) {
                   class="ghost hidden md:inline-flex whitespace-nowrap"
                   :class="action.classes"
                   :loading="actionsLoading[`${row[props.itemKey]}-${action.key}`]"
-                  @click="handleActionClick(action, row, index)"
+                  @click.stop="handleActionClick(action, row, index)"
                 />
                 <u-btn
                   :label="action.label"
@@ -118,7 +118,7 @@ async function handleActionClick(action, item, index) {
                   class="ghost md:hidden whitespace-nowrap"
                   :class="action.classes"
                   :loading="actionsLoading[`${row[props.itemKey]}-${action.key}`]"
-                  @click="handleActionClick(action, row, index)"
+                  @click.stop="handleActionClick(action, row, index)"
                 />
     
                 <u-tooltip
