@@ -17,14 +17,11 @@ const questionId = computed(() =>
   route.params.questionId
 );
 
-const { data: question } = await useUFetch(
-  computed(() => `/questions/${questionId.value}`),
-  {
-    query: {
-      'populate': 'entries.image',
-    },
-  }
-);
+const { data: question } = await useUFetch(computed(() => `/questions/${questionId.value}`), {
+  query: {
+    'populate': 'entries.image',
+  },
+});
 
 
 /* seo */
@@ -54,7 +51,7 @@ watch(isFinished, () => {
 
 async function submitAsnwer() {
 
-  const answer = await ufetch(`/answers/`, {
+  const answer = await ufetch(`/answers/submit`, {
     loading: submittingAnswer,
     method: 'post',
     body: {
@@ -74,7 +71,7 @@ async function submitAsnwer() {
 const shareText = computed(() => {
   
   const answersText = answers.value.map((answer, index) => index === answers.value.length - 1 ? `👑 ${answer} 👑` : `${answer}`).join(' - ');
-  const link = `https://rasa.khoshghadam.com/${question.value.slug}/${question.value._id}/${answerId.value}`;
+  const link = `https://whatithink.khoshghadam.com/${question.value.slug}/${question.value._id}?answer=${answerId.value}`;
 
   return `${question.value.name}\n\nfor me: ${answersText}\n\nWhat do you think? ${link}`;
 

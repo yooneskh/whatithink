@@ -187,7 +187,7 @@ async function deleteAllCurrentMediaList() {
       <div class="flex items-center gap-1">
 
         <template v-if="loading">
-          <span class="text-xs font-mono opacity-50 mt-2.5">
+          <span class="text-xs font-mono opacity-50 me-4">
             <span class="me-2">{{ currentUploadingFileIndex }}/{{ allFilesToUpload }}</span>
             <span class="whitespace-pre">%{{ progress?.toFixed(0).padEnd(3) }}</span>
           </span>
@@ -195,7 +195,7 @@ async function deleteAllCurrentMediaList() {
   
         <u-btn
           icon="i-mdi-upload"
-          label="Upload New Media"
+          label="Upload new media"
           class="primary text-sm"
           :loading="loading || pending"
           @click="elFile.click()"
@@ -207,11 +207,11 @@ async function deleteAllCurrentMediaList() {
           <u-dropdown>
             <u-card class="fill neutral p-2">
               <p class="text-sm mb-1">
-                Hazardous Actions
+                Hazardous actions
               </p>
               <u-btn
                 icon="i-mdi-trash-can"
-                label="Delete All Current Media List"
+                label="Delete all current media list"
                 class="soft danger text-sm"
                 :click-handler="deleteAllCurrentMediaList"
               />
