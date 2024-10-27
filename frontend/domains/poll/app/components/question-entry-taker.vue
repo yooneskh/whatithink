@@ -45,7 +45,7 @@ function selectEntry(entry) {
 
 
 <template>
-  <div class="max-w-md mx-auto">
+  <div class="max-w-xl mx-auto">
     <div class="grid grid-cols-2 items-start gap-4">
       <u-card :key="currentEntry?.name" class="soft neutral text-center interactive" @click="selectEntry(currentEntry)">
         <p class="text-lg md:text-lg">

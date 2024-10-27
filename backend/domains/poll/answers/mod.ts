@@ -124,7 +124,7 @@ export function install(app: IUnifiedApp) {
         });
 
         if (previousAnswer) {
-          app.answers.update({
+          return app.answers.update({
             resourceId: previousAnswer._id,
             payload: {
               entries: body.entries,
@@ -136,6 +136,7 @@ export function install(app: IUnifiedApp) {
           document: {
             user: user?._id,
             question: body.question,
+            answer: body.answer,
             submitterIp: ip,
             entries: body.entries,
           },
