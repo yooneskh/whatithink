@@ -52,16 +52,15 @@ const { data: yourQuestions } = await useUFetch('/questions/', {
         </p>
       </template>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <ol class="list-disc list-inside flex flex-col gap-1">
         <template v-for="question in yourQuestions" :key="question._id">
           <nuxt-link :to="{ name: 'poll.question', params: { questionSlug: question.slug, questionId: question._id } }">
-            <u-card
-              :text="question.name"
-              class="soft neutral interactive"
-            />
+            <li class="hover:underline">
+              {{ question.name }}
+            </li>
           </nuxt-link>
         </template>
-      </div>
+      </ol>
     </section>
 
   </content-container>

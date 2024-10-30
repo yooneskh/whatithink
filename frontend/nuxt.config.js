@@ -11,8 +11,22 @@ export default defineNuxtConfig({
   ],
   modules: [
     'nuxt-gtag',
+    'nuxt-echarts',
   ],
   gtag: {
     id: 'G-0DRC4NL83S',
+  },
+  echarts: {
+    charts: ['BarChart'],
+    components: [
+      'DatasetComponent',
+      'GridComponent',
+      'TooltipComponent',
+      'TransformComponent',
+    ],
+    features: [
+      'LabelLayout',
+      'UniversalTransition',
+    ],
   },
 });

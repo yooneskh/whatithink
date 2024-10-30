@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   experimental: {
     headNext: true,
+    typedPages: true,
   },
   sourcemap: {
     server: false,
@@ -20,8 +21,5 @@ export default defineNuxtConfig({
     '../unified-network',
     'unified-components',
     'nuxt-unified-confetti',
-  ],
-  modules: [
-    'nuxt-typed-router',
   ],
 });

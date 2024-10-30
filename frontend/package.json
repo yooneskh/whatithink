@@ -14,7 +14,6 @@
     "canvas-confetti": "1.9.3",
     "nuxt": "3.13.2",
     "nuxt-gtag": "3.0.1",
-    "nuxt-typed-router": "3.7.0",
     "nuxt-unified-confetti": "0.1.1",
     "pluralize": "8.0.0",
     "slug": "10.0.0",
@@ -22,5 +21,8 @@
     "unified-mongo-filter": "0.3.1",
     "vue": "3.5.12",
     "vue3-persian-datetime-picker": "1.2.2"
+  },
+  "devDependencies": {
+    "nuxt-echarts": "0.2.3"
   }
 }

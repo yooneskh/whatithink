@@ -45,6 +45,7 @@ useHead({
 const answers = ref([]);
 const submittingAnswer = ref(false);
 const answerId = ref('');
+const statistics = ref({});
 
 
 const isFinished = computed(() =>
@@ -84,7 +85,12 @@ async function submitAsnwer() {
     },
   });
 
+  const stats = await ufetch(`/questions/${questionId.value}/statistics`, {
+    loading: submittingAnswer,
+  });
+
   answerId.value = answer._id;
+  statistics.value = stats;
 
 }
 
@@ -160,6 +166,20 @@ async function shareOnTwitterMatch() {
         :question="question"
         v-model="answers"
       />
+    </template>
+
+    <template v-else-if="submittingAnswer">
+      <div class="my-10 flex flex-col justify-center items-center">
+
+        <u-spinner
+          class="w-[32px]"
+        />
+
+        <p class="mt-4 text-xs">
+          Putting your answer in the closet ...
+        </p>
+
+      </div>
     </template>
 
     <template v-else>
@@ -243,6 +263,47 @@ async function shareOnTwitterMatch() {
             You are {{ matchPercentage }}% match! <span v-if="matchPercentage === 69">Nice!</span>
           </p>
         </template>
+
+        <v-chart
+          v-if="statistics?.entries"
+          class="h-md my-4"
+          :option="{
+            xAxis: {
+              type: 'category',
+              color: '#212121',
+              axisLabel: { interval: 0, rotate: 33, color: '#212121' },
+              data: statistics.entries.map((entry) => entry.name),
+            },
+            yAxis: {
+              type: 'value',
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: '#212121',
+                },
+              },
+              splitLine: {
+                lineStyle: {
+                  color: '#212121',
+                },
+              },
+            },
+            tooltip: {
+              trigger: 'axis',
+            },
+            series: [
+              {
+                type: 'bar',
+                data: statistics.entries.map((entry) => ({
+                  value: entry.points,
+                  itemStyle: {
+                    color: entry.name === answers[answers.length - 1] ? '#FFDF00' : '#212121',
+                  },
+                })),
+              },
+            ],
+          }"
+        />
 
         <p class="mt-8 text-lg">
           Share this with your friends to know how much you think alike!

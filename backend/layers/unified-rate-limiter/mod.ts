@@ -24,11 +24,12 @@ export function install(app: IUnifiedApp) {
   app.addMiddlewares({
     'check-rate-limit': context => {
 
-      const rule = context.action.rateLimit ?? {
-        points: 20,
-        windowDuration: 1_000,
-        blockDuration: 60_000,
-      };
+      if (!context.action.rateLimit) {
+        return;
+      }
+
+
+      const rule = context.action.rateLimit!;
   
       const actionKey = [context.action.method, context.action.path].join(' ');
       const userKey = [context.request.headers.get('x-forwarded-for')].join(' ');

@@ -115,6 +115,38 @@ export function install(app: IUnifiedApp) {
       pathPrefix: '/questions',
       requirePermission: 'admin.poll.questions.delete',
     },
+    'statistics': {
+      method: 'get',
+      path: '/questions/:resourceId/statistics',
+      handler: async ({ resourceId }) => {
+        
+        const question = await app.questions.retrieve({
+          resourceId,
+        });
+
+        const answers = await app.answers.list({
+          filter: {
+            question: resourceId,
+          },
+        });
+
+        const entries = question.entries.map((entry) => ({
+          name: entry.name,
+          points: 0,
+        }));
+
+        for (const answer of answers) {
+          entries.find(it => it.name === answer.entries.at(-1))!.points += 1;
+        }
+
+        entries.sort((a, b) => b.points - a.points);
+
+        return {
+          entries,
+        };
+
+      },
+    },
   });
 
 }
