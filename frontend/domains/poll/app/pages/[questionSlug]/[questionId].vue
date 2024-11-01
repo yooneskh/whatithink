@@ -264,46 +264,48 @@ async function shareOnTwitterMatch() {
           </p>
         </template>
 
-        <v-chart
-          v-if="statistics?.entries"
-          class="h-md my-4"
-          :option="{
-            xAxis: {
-              type: 'category',
-              color: '#212121',
-              axisLabel: { interval: 0, rotate: 33, color: '#212121' },
-              data: statistics.entries.map((entry) => entry.name),
-            },
-            yAxis: {
-              type: 'value',
-              axisLine: {
-                show: true,
-                lineStyle: {
-                  color: '#212121',
-                },
+        <client-only>
+          <v-chart
+            v-if="statistics?.entries"
+            class="h-md my-4"
+            :option="{
+              xAxis: {
+                type: 'category',
+                color: '#212121',
+                axisLabel: { interval: 0, rotate: 33, color: '#212121' },
+                data: statistics.entries.map((entry) => entry.name),
               },
-              splitLine: {
-                lineStyle: {
-                  color: '#212121',
-                },
-              },
-            },
-            tooltip: {
-              trigger: 'axis',
-            },
-            series: [
-              {
-                type: 'bar',
-                data: statistics.entries.map((entry) => ({
-                  value: entry.points,
-                  itemStyle: {
-                    color: entry.name === answers[answers.length - 1] ? '#FFDF00' : '#212121',
+              yAxis: {
+                type: 'value',
+                axisLine: {
+                  show: true,
+                  lineStyle: {
+                    color: '#212121',
                   },
-                })),
+                },
+                splitLine: {
+                  lineStyle: {
+                    color: '#212121',
+                  },
+                },
               },
-            ],
-          }"
-        />
+              tooltip: {
+                trigger: 'axis',
+              },
+              series: [
+                {
+                  type: 'bar',
+                  data: statistics.entries.map((entry) => ({
+                    value: entry.points,
+                    itemStyle: {
+                      color: entry.name === answers[answers.length - 1] ? '#FFDF00' : '#212121',
+                    },
+                  })),
+                },
+              ],
+            }"
+          />
+        </client-only>
 
         <p class="mt-8 text-lg">
           Share this with your friends to know how much you think alike!
