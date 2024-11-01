@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     id: 'G-0DRC4NL83S',
   },
   echarts: {
+    ssr: false,
     charts: ['BarChart'],
     components: [
       'DatasetComponent',
