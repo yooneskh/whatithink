@@ -265,7 +265,7 @@ async function shareOnTwitterMatch() {
         </template>
 
         <client-only>
-          <v-chart
+          <lazy-v-chart
             v-if="statistics?.entries"
             class="h-md my-4"
             :option="{
